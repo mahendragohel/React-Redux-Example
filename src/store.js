@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from 'redux';
-import countReducer from './reducer';
+import countReducer from './api/reducer';
 
 const rootReducer = combineReducers({
   count: countReducer

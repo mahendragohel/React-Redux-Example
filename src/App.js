@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Api from './api/api';
+import Store from './store';
+
+const api = new Api(Store);
 
 class App extends React.Component {
   render() {
     const { count, increaseCount, decreaseCount } = this.props;
-    console.log(count);
     return (
       <div className="App">
         <h2>Count: {count}</h2>
@@ -30,17 +33,17 @@ class App extends React.Component {
 function mapDispathToProps(dispatch) {
   return {
     increaseCount: () => {
-      dispatch({ type: 'INCREMENT' });
+      return api.increaseCount();
     },
     decreaseCount: () => {
-      dispatch({ type: 'DECREMENT' });
+      return api.decreaseCount();
     }
   };
 }
 
 function mapStateToProps(state) {
   return {
-    count: state.count.count
+    count: api.getCount()
   };
 }
 export default connect(
